@@ -594,7 +594,7 @@ func (c *rmqClient) ProcessSendResponse(brokerName string, cmd *remote.RemotingC
 // PullMessage with sync
 func (c *rmqClient) PullMessage(ctx context.Context, brokerAddrs string, request *PullMessageRequestHeader) (*primitive.PullResult, error) {
 	cmd := remote.NewRemotingCommand(ReqPullMessage, request, nil)
-	ctx, _ = context.WithTimeout(ctx, 30*time.Second)
+	ctx, _ = context.WithTimeout(ctx, 10*time.Second)
 	res, err := c.remoteClient.InvokeSync(ctx, brokerAddrs, cmd)
 	if err != nil {
 		return nil, err
